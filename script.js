@@ -10,13 +10,14 @@ function getComputerChoice() {
         "scissors";
 }
 
-let computerSelection = getComputerChoice();
 
-let playerSelectionRaw = prompt("Please enter your choice");
+let playerSelectionRaw;
 
-let playerSelection = playerSelectionRaw.toLowerCase();
+let playerSelection;
 
-let totalScore = 0
+let computerSelection;
+
+let totalScore=0;
 
 function capFirstLetter(string){
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -31,12 +32,8 @@ function playRound(a,b) {
         `You lost! ${capFirstLetter(a)} beats ${b}!`;
 }
 
-function check(a,b) {
-    if (!(b === "rock"||b === "scissors"||b === "paper")){
-        return "Wrong input! Please type rock, paper or scissors.";
-    } else {
+function keepScore(a,b) {
         let c = playRound(a,b).charAt(4);
-        
         switch(c){
             case "w":
                 totalScore++;
@@ -44,13 +41,33 @@ function check(a,b) {
             case "l":
                 totalScore--;
         }
-        
+        console.log(totalScore);
         return playRound(a,b);
+}
+
+
+let i = 1
+while (i <= 5) {
+    playerSelectionRaw = prompt("Please enter your choice");
+
+    playerSelection = playerSelectionRaw.toLowerCase();
+
+    computerSelection = getComputerChoice();
+
+    if (!(playerSelection === "rock"||playerSelection === "scissors"||playerSelection === "paper")){
+        alert("Wrong input! Please type rock, paper or scissors.");
+    } else {
+        console.log(computerSelection);
+        console.log(playerSelection);
+        alert(keepScore(computerSelection,playerSelection));
+        i++;
     }
 }
 
-console.log(totalScore)
-alert(check(computerSelection,playerSelection));
 
+
+// alert(multiRounds(5,computerSelection,playerSelection));
+// alert(keepScore(computerSelection,playerSelection));
+alert(totalScore);
 
   
