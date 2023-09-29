@@ -10,21 +10,18 @@ function getComputerChoice() {
         "scissors";
 }
 
-let compChoice = getComputerChoice();
+let computerSelection = getComputerChoice();
 
-let playerChoiceRaw = prompt("Please enter your choice");
+let playerSelectionRaw = prompt("Please enter your choice");
 
-let playerChoice = playerChoiceRaw.toLowerCase();
-
-console.log(`Computer gives: ${compChoice}`);
-console.log(`Your choice is: ${playerChoice}`);
+let playerSelection = playerSelectionRaw.toLowerCase();
 
 function capFirstLetter(string){
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 
-function compareChoices(a,b) {
+function playRound(a,b) {
     return a === b?
         "It's a tie!":
         (a==="rock"&&b==="paper"||a==="paper"&&b==="scissors"||a==="scissors"&&b==="rock")?
@@ -33,9 +30,9 @@ function compareChoices(a,b) {
 }
 
 
-if (!(playerChoice === "rock"||playerChoice === "scissors"||playerChoice === "paper")){
-    alert("Error");
+if (!(playerSelection === "rock"||playerSelection === "scissors"||playerSelection === "paper")){
+    alert("Wrong input! Please type rock, paper or scissors.");
 } else {
-    alert(compareChoices(compChoice,playerChoice));
+    alert(playRound(computerSelection,playerSelection));
 }
   
