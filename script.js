@@ -13,24 +13,29 @@ function capFirstLetter(string){
 
 function playRound(a,b) {
     if(a === b){
-        announce.textContent = "It's a tie!";
         return "It's a tie!";        
     }else if(a==="rock"&&b==="paper"||a==="paper"&&b==="scissors"||a==="scissors"&&b==="rock"){
         playerScore++;
-        announce.textContent = `You won! ${capFirstLetter(b)} beats ${a}!`;
         return `You won! ${capFirstLetter(b)} beats ${a}!`;
     }else {
         computerScore++;
-        document.querySelector('#result').textContent = `You lost! ${capFirstLetter(a)} beats ${b}!`;
         return `You lost! ${capFirstLetter(a)} beats ${b}!`;
     }
 }
 
 function play(){
     computerSelection = getComputerChoice(); 
-    console.log(playRound(computerSelection,playerSelection));
+    
     playerPic.textContent = playerSelection;
     botPic.textContent = computerSelection;
+
+    let itemContent = playRound(computerSelection,playerSelection);
+    announce.textContent = itemContent;
+
+    const historyItem = document.createElement('li');
+    historyItem.textContent = itemContent;
+    console.log(historyItem);
+    history.appendChild(historyItem);
 
     console.log(playerScore);
     console.log(computerScore);
@@ -63,6 +68,7 @@ function finishGame(){
     announce.textContent = "";
     playerScore = 0;
     computerScore = 0; 
+    
 }
 
 
@@ -110,6 +116,12 @@ scissorsBtn.textContent = "Scissors";
 const retryBtn = document.createElement('button');
 retryBtn.textContent = "Play again";
 
+const history = document.querySelector('#history');
+
+
+
+
+
 
 let playerSelection;
 let computerSelection;
@@ -135,4 +147,5 @@ retryBtn.addEventListener('click', () => {
     buttons.removeChild(retryBtn);
     show.textContent = '';
     setUp();
+    history.textContent = "";
 });
