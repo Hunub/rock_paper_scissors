@@ -29,23 +29,43 @@ function playRound(a,b) {
 function play(){
     computerSelection = getComputerChoice(); 
     console.log(playRound(computerSelection,playerSelection));
-    document.querySelector('.player').textContent = playerSelection;
-    document.querySelector('.bot').textContent = computerSelection;
+    playerPic.textContent = playerSelection;
+    botPic.textContent = computerSelection;
 
     console.log(playerScore);
     console.log(computerScore);
     if(playerScore === 5 ||computerScore === 5){
         if(playerScore > computerScore){
-            alert('Yay you won!');
+            show.textContent = 'Yay you won!';
         }else{
-            alert('You lost :(');
-        }
+            show.textContent = 'You lost :(';
+        };
+        finishGame();
+
     }
+
 }
 
-const rockBtn = document.querySelector('#rock');
-const paperBtn = document.querySelector('#paper');
-const scissorsBtn = document.querySelector('#scissors');
+function setUp(){
+    document.querySelector("#result").textContent = "Click a button to play!"
+    show.appendChild(playerBoard);
+    show.appendChild(botBoard);
+    buttons.appendChild(rockBtn);
+    buttons.appendChild(paperBtn);
+    buttons.appendChild(scissorsBtn);
+}
+
+function finishGame(){
+    buttons.removeChild(rockBtn);
+    buttons.removeChild(paperBtn);
+    buttons.removeChild(scissorsBtn);
+    buttons.appendChild(retryBtn);
+    announce.textContent = "";
+    playerScore = 0;
+    computerScore = 0; 
+}
+
+
 
 const announce = document.querySelector('#result');
 announce.style.margin = "auto";
@@ -59,10 +79,14 @@ const botBoard =  document.createElement('div');
 botBoard.setAttribute("class", "bot vertical");
 const playerName = document.createElement('h4');
 playerName.setAttribute("class", "name");
+playerName.textContent = "Your choice:";
 const botName = document.createElement('h4');
 botName.setAttribute("class", "name");
+botName.textContent = "Bot's choice:";
 const playerPic = document.createElement('div');
+playerPic.setAttribute("id", "playerpic")
 const botPic = document.createElement('div');
+botPic.setAttribute("id","bpic");
 
 playerBoard.appendChild(playerName);
 playerBoard.appendChild(playerPic);
@@ -71,13 +95,20 @@ botBoard.appendChild(botName);
 botBoard.appendChild(botPic);
 
 
-function setUp(){
-    show.appendChild(playerBoard);
-    show.appendChild(botBoard);
-    return;
-}
+const buttons = document.querySelector('#buttons');
 
+const rockBtn = document.createElement('button');
+rockBtn.setAttribute('id', 'rock');
+rockBtn.textContent = "Rock";
+const paperBtn = document.createElement('button');
+paperBtn.setAttribute('id', 'paper');
+paperBtn.textContent = "Paper";
+const scissorsBtn = document.createElement('button');
+scissorsBtn.setAttribute('id', 'scissors');
+scissorsBtn.textContent = "Scissors";
 
+const retryBtn = document.createElement('button');
+retryBtn.textContent = "Play again";
 
 
 let playerSelection;
@@ -99,3 +130,9 @@ scissorsBtn.addEventListener('click',() => {
     playerSelection = 'scissors';
     play();
     })
+
+retryBtn.addEventListener('click', () => {
+    buttons.removeChild(retryBtn);
+    show.textContent = '';
+    setUp();
+});

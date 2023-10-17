@@ -19,19 +19,19 @@
            
         }
         .result {
-            background-color: aquamarine;
+            background-color: white;
             flex-basis: 5vh;
             text-align: center;
         }
 
         .main {
-            background-color: rgb(94, 201, 32);
+            background-color: white;
             flex-basis: 36vh;
             align-items: center;
         }
 
-        .player {
-            background-color: rgb(19, 94, 207);
+        .player, .bot {
+            background-color: white;
             text-align: center;
             flex: 0 1 240px;
             height: auto;
@@ -39,17 +39,8 @@
             
         }
 
-        .bot {
-            background-color: rgb(201, 32, 164);
-            text-align: center;
-            flex: 0 1 240px;
-            height: auto;
-            margin: 0 50px;
-        }
-
-
         .history {
-            background-color: rgb(223, 162, 31);
+            background-color: white;
             flex:1 0 auto;
         }
         
@@ -60,9 +51,26 @@
             width: 100%;
             margin: 0;
             justify-content: center;
-            
-            
         }
+
+        #rock, #paper, #scissors {
+            width: 120px;
+            height: 64px;
+            margin: 8px 32px;
+        }
+
+        button {
+            border: none;
+            color: black;
+            background-color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+        }
+        button:hover {
+            color: rgb(7, 20, 201);
+        }
+
     </style>
     <script src="script.js" defer></script>   
 </head>
@@ -78,9 +86,7 @@
 
         </div>
         <div id = "buttons">
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissors">Scissors</button>
+            
         </div>
         
     </div>
