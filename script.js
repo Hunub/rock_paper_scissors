@@ -11,6 +11,37 @@ function capFirstLetter(string){
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+
+
+function assignPic(pselection, cselection){
+    switch(pselection) {
+        case "rock":
+        imgPly.src = "img/R.png"
+        break;
+        case "paper":
+            imgPly.src = "img/P.png"
+        break;
+        case "scissors":
+            imgPly.src = "img/S.png"
+        break;
+        default:
+            imgPly.src = "img/Q.png"
+    };
+    switch(cselection) {
+        case "rock":
+        imgBot.src = "img/R.png"
+        break;
+        case "paper":
+            imgBot.src = "img/P.png"
+        break;
+        case "scissors":
+            imgBot.src = "img/S.png"
+        break;
+        default:
+            imgBot.src = "img/Q.png"
+    };
+}
+
 function playRound(a,b) {
     if(a === b){
         return "It's a tie!";        
@@ -26,8 +57,13 @@ function playRound(a,b) {
 function play(){
     computerSelection = getComputerChoice(); 
     
-    playerPic.textContent = playerSelection;
-    botPic.textContent = computerSelection;
+
+    assignPic(playerSelection, computerSelection);
+
+  
+    playerPic.appendChild(imgPly);
+    botPic.appendChild(imgBot);
+ 
 
     let itemContent = playRound(computerSelection,playerSelection);
     announce.textContent = itemContent;
@@ -41,10 +77,13 @@ function play(){
     console.log(computerScore);
     if(playerScore === 5 ||computerScore === 5){
         if(playerScore > computerScore){
-            show.textContent = 'Yay you won!';
+            finalMsg.textContent = 'Yay you won!';
+            
         }else{
-            show.textContent = 'You lost :(';
+            finalMsg.textContent  = 'Sorry you lost :(';
+            
         };
+        show.appendChild(finalMsg);
         finishGame();
 
     }
@@ -58,8 +97,12 @@ function setUp(){
     buttons.appendChild(rockBtn);
     buttons.appendChild(paperBtn);
     buttons.appendChild(scissorsBtn);
-    playerPic.textContent = "";
-    botPic.textContent = "";
+    
+    imgPly.src = "img/Q.png"
+    imgBot.src = "img/Q.png"
+    playerPic.appendChild(imgPly);
+    botPic.appendChild(imgBot);
+
 }
 
 function finishGame(){
@@ -68,6 +111,8 @@ function finishGame(){
     buttons.removeChild(scissorsBtn);
     buttons.appendChild(retryBtn);
     announce.textContent = "";
+    show.removeChild(playerBoard);
+    show.removeChild(botBoard);
     playerScore = 0;
     computerScore = 0; 
 }
@@ -95,6 +140,9 @@ playerPic.setAttribute("id", "playerpic")
 const botPic = document.createElement('div');
 botPic.setAttribute("id","bpic");
 
+const imgPly = document.createElement('img');
+const imgBot = document.createElement('img');
+
 playerBoard.appendChild(playerName);
 playerBoard.appendChild(playerPic);
 
@@ -116,6 +164,9 @@ scissorsBtn.textContent = "Scissors";
 
 const retryBtn = document.createElement('button');
 retryBtn.textContent = "Play again";
+
+const finalMsg = document.createElement("h1");
+
 
 const history = document.querySelector('#history');
 
