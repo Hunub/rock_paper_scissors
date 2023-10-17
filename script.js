@@ -58,6 +58,8 @@ function setUp(){
     buttons.appendChild(rockBtn);
     buttons.appendChild(paperBtn);
     buttons.appendChild(scissorsBtn);
+    playerPic.textContent = "";
+    botPic.textContent = "";
 }
 
 function finishGame(){
@@ -68,7 +70,6 @@ function finishGame(){
     announce.textContent = "";
     playerScore = 0;
     computerScore = 0; 
-    
 }
 
 
@@ -148,4 +149,6 @@ retryBtn.addEventListener('click', () => {
     show.textContent = '';
     setUp();
     history.textContent = "";
+    playerSelection = "";
+    computerSelection = "";
 });
