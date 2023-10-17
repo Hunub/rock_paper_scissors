@@ -3,11 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <title>Rock Paper Scissors!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .vertical {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .center {
+            padding: 24px 80px;
+           
+        }
+        .result {
+            background-color: aquamarine;
+            flex-basis: 5vh;
+            text-align: center;
+        }
+
+        .main {
+            background-color: rgb(94, 201, 32);
+            flex-basis: 36vh;
+            align-items: center;
+        }
+
+        .player {
+            background-color: rgb(19, 94, 207);
+            text-align: center;
+            flex: 0 1 240px;
+            height: auto;
+            margin: 0 50px;
+            
+        }
+
+        .bot {
+            background-color: rgb(201, 32, 164);
+            text-align: center;
+            flex: 0 1 240px;
+            height: auto;
+            margin: 0 50px;
+        }
+
+
+        .history {
+            background-color: rgb(223, 162, 31);
+            flex:1 0 auto;
+        }
+        
+        #show {
+            display: flex;
+            padding: 30px 0;
+            flex-basis: 24vh;
+            width: 100%;
+            margin: 0;
+            justify-content: center;
+            
+            
+        }
+    </style>
     <script src="script.js" defer></script>   
 </head>
-<body>
-<button id="rock">Rock</button>
-<button id="paper">Paper</button>
-<button id="scissors">Scissors</button>
+<body class="vertical" onload = "setUp()">
+    <div class = "center result">
+        <h2 id = "result">
+
+        </h2>
+    </div>
+    <div class = "main center vertical">
+        <div id = "show">
+            
+
+        </div>
+        <div id = "buttons">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+        
+    </div>
+    <div class = "history center">
+
+    </div>
+
 </body>
 </html>
